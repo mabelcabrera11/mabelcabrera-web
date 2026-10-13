@@ -28,7 +28,7 @@ body[data-pal]:not([data-pal="salvia"]) .bg-sage{background:var(--sage)}body[dat
 (function(){
 const listado=document.getElementById('articulos-publicados');
 const newen=document.getElementById('articulos-newen');
-function campo(front,key){const match=front.match(new RegExp('^'+key+':\\s*(.*)</html>,'mi'));if(!match)return '';let val=match[1].trim();if((val[0]==='"'&&val[val.length-1]==='"')||(val[0]==="'"&&val[val.length-1]==="'"))val=val.slice(1,-1);return val.replace(/\\\"/g,'"');}
+function campo(front,key){const line=front.split(/\r?\n/).find(row=>row.trim().startsWith(key+':'));if(!line)return '';let val=line.slice(line.indexOf(':')+1).trim();if((val.startsWith('"')&&val.endsWith('"'))||(val.startsWith("'")&&val.endsWith("'")))val=val.slice(1,-1);return val;}
 function leerDocumento(doc,filename){
  const m=doc.match(/^---\s*\r?\n([\s\S]*?)\r?\n---\s*\r?\n?/);
  if(!m)return null;
