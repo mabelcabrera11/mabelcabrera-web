@@ -1,0 +1,30 @@
+backend:
+  name: github
+  repo: mabelcabrera11/mabelcabrera-web
+  branch: main
+
+locale: es
+
+media_folder: "imagenes"
+public_folder: "/imagenes"
+
+collections:
+  - name: "articulos"
+    label: "Mis artículos"
+    folder: "articulos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Título"
+        name: "title"
+        widget: "string"
+      - label: "Fecha"
+        name: "date"
+        widget: "datetime"
+      - label: "Fotografía"
+        name: "image"
+        widget: "image"
+        required: false
+      - label: "Texto del artículo"
+        name: "body"
+        widget: "markdown"
